@@ -1,4 +1,4 @@
-const CANVAS_H = 910; // Must be multiple of 65
+const CANVAS_H = 1040; // Must be multiple of 65
 const CANVAS_W = Math.ceil((1280/1040)*CANVAS_H);
 const TILE_W = 80;
 const TILE_H = 65;

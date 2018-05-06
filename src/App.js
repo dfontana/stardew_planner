@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Background from './component/background'
 import Foreground from './component/foreground'
 import Highlights from './component/highlights'
+import { CANVAS_W, CANVAS_H } from './constants'
 
 const appStyles = {
-  width: '1280px',
-  height: '1040px'
+  width: `${CANVAS_W}px`,
+  height: `${CANVAS_H}px`
 }
 
 class App extends Component {

@@ -22,9 +22,13 @@ class Highlights extends Component {
   }
   
   async componentDidMount() {
-    this.refs.canvas.width = CANVAS_W;
-    this.refs.canvas.height = CANVAS_H;
+    this.refs.canvas.width = CANVAS_W*2;
+    this.refs.canvas.height = CANVAS_H*2;
+    this.refs.canvas.style.width = "1280px";
+    this.refs.canvas.style.height = "1040px";
     this.setState({ctx: this.refs.canvas.getContext("2d")})
+    let multi = window.devicePixelRatio || 1
+    this.refs.canvas.getContext("2d").scale(multi,multi)
   }
 
   update() {
