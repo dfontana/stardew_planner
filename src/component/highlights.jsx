@@ -14,8 +14,8 @@ class Highlights extends Component {
   }
   
   async componentDidMount() {
-    setScale(this.refs.canvas, this.refs.canvas.getContext("2d"));
     this.ctx = this.refs.canvas.getContext("2d");
+    setScale(this.refs.canvas, this.ctx);
   }
 
   clear = (e) => {
