@@ -1,4 +1,4 @@
-import { TILE_S } from '../constants'
+import { TILE_S, CANVAS_W, CANVAS_H } from '../constants'
 
 /**
  * Draws a static resource to the canvas at the given position of the given
@@ -22,4 +22,18 @@ function drawStatic(ctx, path, x, y, sx, sy) {
   })
 }
 
-export default drawStatic;
+/**
+ * Corrects the scaling of canvases to be represetative of the browser running it.
+ * @param {HTMLCanvasElement} canvas Canvas to set size of
+ * @param {HTMLCanvasContext} ctx Context to set the scale of
+ */
+function setScale(canvas, ctx) {
+  canvas.width = CANVAS_W*2;
+  canvas.height = CANVAS_H*2;
+  canvas.style.width = `${CANVAS_W}px`;
+  canvas.style.height = `${CANVAS_H}px`;
+  let multi = window.devicePixelRatio || 1
+  ctx.scale(multi,multi)
+}
+
+export { drawStatic, setScale };

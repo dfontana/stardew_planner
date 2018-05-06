@@ -14,12 +14,16 @@ class App extends Component {
     this.refs.highs.highlight(e);
   }
 
+  handleLeave = (e) => {
+    this.refs.highs.clear(e);
+  }
+
   render() {
     return (
       <div style={appStyles}>
         <Background />
         <Highlights ref="highs" />
-        <Foreground OnMouseMove={this.handleMove}/>
+        <Foreground onMouseMove={this.handleMove} onMouseLeave={this.handleLeave}/>
       </div>
     );
   }
