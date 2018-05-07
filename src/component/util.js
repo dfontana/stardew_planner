@@ -36,4 +36,23 @@ function setScale(canvas, ctx) {
   ctx.scale(multi,multi)
 }
 
-export { drawStatic, setScale };
+/**
+ * Converts a coordinate to a tile. The returned tile will be inclusive 
+ * of the tile the user clicked within. 
+ * NOTE: THIS ACCOUNTS FOR SCALING
+ * @param {Float} coor Coordinate in need of translation.
+ */
+function tile(coor) {
+  return Math.floor(coor/TILE_S)+1
+}
+
+/**
+ * Converts the given tile coordinate into an coorindate on the Canvas.
+ * NOTE: THIS ACCOUNTS FOR SCALING
+ * @param {Int} tile Tile to translate
+ */
+function scrn(tile) {
+  return Math.floor((tile-1)*TILE_S)
+}
+
+export { drawStatic, setScale, tile, scrn };
