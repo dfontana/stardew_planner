@@ -136,16 +136,16 @@ class Foreground extends Component {
     p2.closePath();
     // --- (Omit GreenHouse)
     p2.moveTo(scrn(26), scrn(17))
-    p2.lineTo(scrn(26), scrn(11))
-    p2.lineTo(scrn(33), scrn(11))
     p2.lineTo(scrn(33), scrn(17))
+    p2.lineTo(scrn(33), scrn(11))
+    p2.lineTo(scrn(26), scrn(11))
     // --- (Omit House)
     p2.moveTo(scrn(60), scrn(12))
-    p2.lineTo(scrn(69), scrn(12))
-    p2.lineTo(scrn(69), scrn(17))
-    p2.lineTo(scrn(70), scrn(17))
-    p2.lineTo(scrn(70), scrn(18))
     p2.lineTo(scrn(60), scrn(18))
+    p2.lineTo(scrn(70), scrn(18))
+    p2.lineTo(scrn(70), scrn(17))
+    p2.lineTo(scrn(69), scrn(17))
+    p2.lineTo(scrn(69), scrn(12))
 
     
     console.timeEnd('Path Method construction')
@@ -154,7 +154,7 @@ class Foreground extends Component {
 
     let ctx = canvas.getContext("2d")
     ctx.fillStyle = 'rgba(0,0,255,0.5)'
-    ctx.fill(p2, "evenodd");
+    ctx.fill(p2);
     ctx.fillStyle = 'rgba(255,0,0,0.5)'
     ctx.fill(p);
     
