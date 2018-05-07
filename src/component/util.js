@@ -38,8 +38,7 @@ function setScale(canvas, ctx) {
 
 /**
  * Converts a coordinate to a tile. The returned tile will be inclusive 
- * of the tile the user clicked within. 
- * NOTE: THIS ACCOUNTS FOR SCALING
+ * of the tile the user clicked within.
  * @param {Float} coor Coordinate in need of translation.
  */
 function tile(coor) {
@@ -48,7 +47,6 @@ function tile(coor) {
 
 /**
  * Converts the given tile coordinate into an coorindate on the Canvas.
- * NOTE: THIS ACCOUNTS FOR SCALING
  * @param {Int} tile Tile to translate
  */
 function scrn(tile) {
