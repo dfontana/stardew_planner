@@ -32,13 +32,12 @@ class Highlights extends Component {
     this.ctx.beginPath();
   
     // let tileX = Math.floor(e.offsetX / TILE_S) * TILE_S
-    let tileX = scrn(tile(e.offsetX))
+    let [tileX, tileY] = scrn(tile(e.offsetX), tile(e.offsetY))
     this.ctx.moveTo(tileX, 0);
     this.ctx.lineTo(tileX, CANVAS_H)
     this.ctx.moveTo(tileX+TILE_S, 0);
     this.ctx.lineTo(tileX+TILE_S, CANVAS_H)
   
-    let tileY = scrn(tile(e.offsetY))
     this.ctx.moveTo(0, tileY);
     this.ctx.lineTo(CANVAS_W, tileY)
     this.ctx.moveTo(0, tileY+TILE_S);

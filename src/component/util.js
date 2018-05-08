@@ -47,10 +47,12 @@ function tile(coor) {
 
 /**
  * Converts the given tile coordinate into an coorindate on the Canvas.
- * @param {Int} tile Tile to translate
+ * @param {Int} x X-Coordinate of tile
+ * @param {Int} y Y-Coordinate of tile
+ * @returns an array, the onscreen (x,y) of the tile's upper left corner.
  */
-function scrn(tile) {
-  return Math.floor((tile-1)*TILE_S)
+function scrn(x, y) {
+  return [Math.floor((x-1)*TILE_S), Math.floor((y-1)*TILE_S)]
 }
 
 export { drawStatic, setScale, tile, scrn };
