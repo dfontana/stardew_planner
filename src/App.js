@@ -3,9 +3,19 @@ import Background from './component/background'
 import Foreground from './component/foreground'
 import Highlights from './component/highlights'
 
-const appStyles = {
-  position: 'absolute',
-  left: 0
+const canvasContainerStyles = {
+  display: 'grid',
+  gridArea: 'canvas'
+}
+
+const leftPalette = {
+  gridArea: 'palette_left',
+  backgroundColor: 'teal'
+}
+
+const topPalette = {
+  gridArea: 'palette_top',
+  backgroundColor: 'yellow'
 }
 
 class App extends Component {
@@ -19,11 +29,15 @@ class App extends Component {
 
   render() {
     return (
-      <div style={appStyles}>
-        <Background />
-        <Highlights ref="highs" />
-        <Foreground onMouseMove={this.handleMove} onMouseLeave={this.handleLeave}/>
-      </div>
+      <React.Fragment>
+        <div style={topPalette}> TOP PALETTE </div>
+        <div style={leftPalette}> LEFT PALETTE </div>
+        <div style={canvasContainerStyles}>
+          <Background />
+          <Highlights ref="highs" />
+          <Foreground onMouseMove={this.handleMove} onMouseLeave={this.handleLeave}/>
+        </div>
+      </React.Fragment>
     );
   }
 }

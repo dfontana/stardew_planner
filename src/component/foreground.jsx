@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { drawStatic, setScale, scrn } from './util'
 
 const canvasStyles = {
-  position: 'absolute',
   zIndex: 2
 }
 
