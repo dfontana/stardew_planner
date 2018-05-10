@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { CANVAS_W, CANVAS_H, TILE_S } from '../constants'
 import { setScale, tile, scrn} from './util'
 
-const canvasStyles = {
-  position: 'absolute',
-  zIndex: 1
-}
-
 class Highlights extends Component {
   constructor(props) {
     super(props);
+    this.style = {
+      gridArea: '1/1/1/1',
+      zIndex: 1
+    }
     this.ctx = null;
   }
   
@@ -59,7 +58,7 @@ class Highlights extends Component {
 
   render(){
     return (
-      <canvas ref="canvas" style={canvasStyles} />
+      <canvas ref="canvas" style={this.style} />
     );
   }
 }

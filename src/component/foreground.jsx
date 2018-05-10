@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { drawStatic, setScale, scrn } from './util'
 
-const canvasStyles = {
-  zIndex: 2
-}
-
 class Foreground extends Component {
+  constructor(props) {
+    super(props);
+    this.style = {
+      gridArea: '1/1/1/1',
+      zIndex: 2
+    }
+  }
   componentDidMount() {
     let ctx = this.refs.canvas.getContext("2d");
     setScale(this.refs.canvas, ctx);
@@ -372,7 +375,7 @@ class Foreground extends Component {
 
   render(){
     return (
-      <canvas ref="canvas" style={canvasStyles} onMouseMove={this.props.onMouseMove} 
+      <canvas ref="canvas" style={this.style} onMouseMove={this.props.onMouseMove} 
               onMouseLeave={this.props.onMouseLeave} onClick={this.handleClick} />
     );
   }

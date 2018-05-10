@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { CANVAS_W, CANVAS_H, TILE_S, TILE_W, TILE_H } from '../constants'
 import { drawStatic, setScale } from './util'
 
-const canvasStyles = {
-  position: 'absolute',
-  zIndex: 0
-}
-
 class Background extends Component {
+  constructor(props) {
+    super(props);
+    this.style = {
+      gridArea: '1/1/1/1',
+      zIndex: 0
+    }
+  }
   async componentDidMount() {
     let ctx = this.refs.canvas.getContext("2d");
     setScale(this.refs.canvas, ctx);
@@ -33,7 +35,7 @@ class Background extends Component {
 
   render(){
     return (
-      <canvas ref="canvas" style={canvasStyles} />
+      <canvas ref="canvas" style={this.style} />
     );
   }
 }

@@ -2,20 +2,11 @@ import React, { Component } from 'react';
 import Background from './component/background'
 import Foreground from './component/foreground'
 import Highlights from './component/highlights'
+import Palette from './component/palette'
 
 const canvasContainerStyles = {
   display: 'grid',
   gridArea: 'canvas'
-}
-
-const leftPalette = {
-  gridArea: 'palette_left',
-  backgroundColor: 'teal'
-}
-
-const topPalette = {
-  gridArea: 'palette_top',
-  backgroundColor: 'yellow'
 }
 
 class App extends Component {
@@ -30,8 +21,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={topPalette}> TOP PALETTE </div>
-        <div style={leftPalette}> LEFT PALETTE </div>
+        <Palette location='palette_top' />
+        <Palette location='palette_left' />
         <div style={canvasContainerStyles}>
           <Background />
           <Highlights ref="highs" />
