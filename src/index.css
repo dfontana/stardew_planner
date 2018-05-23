@@ -8,6 +8,7 @@
   grid-template-areas: 
     ". palette_top" 
     "palette_left canvas";
+  height: 100vh;
 }
 
 body {
