@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-
-
+import React, { Component } from 'react'
 
 class Palette extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.style = {
       backgroundColor: 'yellow',
       gridArea: props.location
@@ -14,8 +12,8 @@ class Palette extends Component {
   render() {
     return (
       <div style={this.style}>Suh dude.</div>
-    );
+    )
   }
 }
 
-export default Palette;
+export default Palette
