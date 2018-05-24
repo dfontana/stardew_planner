@@ -1,4 +1,4 @@
-#Stardew Planner (Name Pending...)
+# Stardew Planner (Name Pending...)
 
 A farm layout planner designed for the popular indie game, Stardew Valley. The project is currently under heavy work, meaning its not yet published. For those curious, the planner takes advantage of ReactJs, Styled-Components, and HTML5 Canvas to (hopefully) create a buttery-smooth user experience.
 
