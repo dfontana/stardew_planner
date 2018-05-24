@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 import { drawStatic, setScale, scrn } from './util'
+
+const Canvas = styled.canvas`
+  grid-area: 1/1/1/1;
+  z-index: 2;
+`
 
 class Foreground extends Component {
   constructor(props) {
-    super(props);
-    this.style = {
-      gridArea: '1/1/1/1',
-      zIndex: 2
+    super(props)
+    this.setRef = e => {
+      this.canvas = e
+      this.ctx = e.getContext("2d")
     }
   }
+  
   componentDidMount() {
-    let ctx = this.refs.canvas.getContext("2d");
-    setScale(this.refs.canvas, ctx);
-    drawStatic(ctx, '/img/farm_house.png', 59, 8, 9, 9);
-    drawStatic(ctx, '/img/farm_greenhouse.png', 25, 8, 7, 8);
-    this.drawBoundaries(this.refs.canvas);
+    setScale(this.canvas, this.ctx)
+    drawStatic(this.ctx, '/img/farm_house.png', 59, 8, 9, 9)
+    drawStatic(this.ctx, '/img/farm_greenhouse.png', 25, 8, 7, 8)
+    this.drawBoundaries()
   }
 
-  drawBoundaries = (canvas) => {
+  drawBoundaries = () => {
     console.time('Path Method Construction')
-    let p = new Path2D();
+    let p = new Path2D()
     // Grandpa's Grave
     p.moveTo(...scrn(12, 13))
     p.lineTo(...scrn(13, 13))
@@ -353,32 +359,29 @@ class Foreground extends Component {
     console.timeEnd('Path Method Construction')
 
     this.bounds = p
-
-    let ctx = canvas.getContext("2d")
-    ctx.fillStyle = 'rgba(0,0,255,0.5)'
-    ctx.fill(p);
-    ctx.fillStyle = 'rgba(255,0,0,0.5)'
-    ctx.fill(p);
+    this.ctx.fillStyle = 'rgba(0,0,255,0.5)'
+    this.ctx.fill(p)
+    this.ctx.fillStyle = 'rgba(255,0,0,0.5)'
+    this.ctx.fill(p)
     
   }
 
   handleClick = (e) => {
-    e = e.nativeEvent;
-    let ctx = this.refs.canvas.getContext("2d")
-
+    e = e.nativeEvent
+    
     // isPointInPath uses an untransformed path space, so to determine if click
     // occurs within bounds, we have to scale the mouse coordiantes.
     let scale = window.devicePixelRatio || 1
-    let isValid = ctx.isPointInPath(this.bounds, e.offsetX * scale, e.offsetY * scale);
+    let isValid = this.ctx.isPointInPath(this.bounds, e.offsetX * scale, e.offsetY * scale)
     console.log(`(${e.offsetX}, ${e.offsetY}): ${isValid}`)
   }
 
   render(){
     return (
-      <canvas ref="canvas" style={this.style} onMouseMove={this.props.onMouseMove} 
+      <Canvas innerRef={this.setRef} onMouseMove={this.props.onMouseMove} 
               onMouseLeave={this.props.onMouseLeave} onClick={this.handleClick} />
-    );
+    )
   }
 }
 
-export default Foreground;
+export default Foreground

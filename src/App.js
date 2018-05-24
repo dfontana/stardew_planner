@@ -1,21 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 import Background from './component/background'
 import Foreground from './component/foreground'
 import Highlights from './component/highlights'
 import Palette from './component/palette'
 
-const canvasContainerStyles = {
-  display: 'grid',
-  gridArea: 'canvas'
-}
+const CanvasContainer = styled.div`
+  display: grid;
+  grid-area: canvas;
+  overflow: auto;
+`
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.setHighRef = e => {
+      this.highs = e
+    }
+  }
   handleMove = (e) => {
-    this.refs.highs.highlight(e);
+    this.highs.highlight(e)
   }
 
   handleLeave = (e) => {
-    this.refs.highs.clear(e);
+    this.highs.clear(e)
   }
 
   render() {
@@ -23,14 +31,14 @@ class App extends Component {
       <React.Fragment>
         <Palette location='palette_top' />
         <Palette location='palette_left' />
-        <div style={canvasContainerStyles}>
+        <CanvasContainer>
           <Background />
-          <Highlights ref="highs" />
+          <Highlights ref={this.setHighRef} />
           <Foreground onMouseMove={this.handleMove} onMouseLeave={this.handleLeave}/>
-        </div>
+        </CanvasContainer>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default App;
+export default App

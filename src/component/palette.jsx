@@ -1,4 +1,34 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
+import ArrowButton from './arrowButton'
+
+const Container = styled.div`
+  background-color: red;
+  grid-area: ${props => props.location};
+  place-self: ${props => props.isLeft ? 'center start' : 'start center'};
+
+  display: flex;
+  flex-direction: ${props => props.isLeft ? 'row' : 'column'};
+  justify-content: start;
+  align-items: center;
+  `
+const ToolBox = styled.div`
+  background-color: orange;
+  width: ${props => props.W}px;
+  height: ${props => props.H}px;
+  display: ${props => props.isOpen ? 'flex' : 'none'};
+  flex-direction: ${props => props.isLeft ? 'column' : 'row'};
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  `
+
+const Tool = styled.div`
+  background-color: teal;
+  width: 50px;
+  height: 50px;
+  margin: 10px 10px;
+  `
 
 class Palette extends Component {
   constructor(props) {
@@ -13,42 +43,21 @@ class Palette extends Component {
   }
 
   render() {
-    let isLeft = this.props.location == 'palette_left';
-    let W = '500px'
-    let H = '100px'
+    let isLeft = this.props.location === 'palette_left';
+    let W = 500
+    let H = 100
 
-    let containerStyle = {
-      backgroundColor: 'red',
-      gridArea: this.props.location,
-      placeSelf: isLeft ? 'center start' : 'start center',
-
-      display: 'flex',
-      flexDirection: isLeft ? 'row' : 'column',
-      justifyContent: 'start',
-      alignItems: 'center'
-    }
-
-    let buttonStyle = {
-      width: isLeft ? '10px' : '20px',
-      height: isLeft ? '20px' : '10px',
-      backgroundColor: 'yellow',
-      cursor: 'pointer',
-      zIndex: 99
-    }
-
-    let paletteStyle = {
-      backgroundColor: 'orange',
-      width: isLeft ? H : W,
-      height: isLeft ? W : H,
-      display: this.state.isOpen ? 'block' : 'none',
-      zIndex: 99
-    }
+    let tools = ['crow', 'sprinkle', 'farm'].map((item, i) => (
+      <Tool key={i}>{item}</Tool>
+    ))
 
     return (
-      <div style={containerStyle}>
-        <div style={paletteStyle}></div>
-        <div style={buttonStyle} onClick={this.handleOpen}></div>
-      </div>
+      <Container location={this.props.location} isLeft={isLeft}>
+        <ToolBox W={isLeft ? H : W} H={isLeft ? W : H} isOpen={this.state.isOpen} isLeft={isLeft}>
+          {tools}
+        </ToolBox>
+        <ArrowButton handler={this.handleOpen} orient={isLeft ? 'right' : 'down'}></ArrowButton>
+      </Container>
     )
   }
 }
